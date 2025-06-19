@@ -28,7 +28,7 @@ const Hero = () => {
 
             <div className="mb-6">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-2">
-                Hi, I'm
+                Hi, I&apos;m
               </h1>
               <div className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-[length:200%_auto] animate-gradient bg-clip-text text-transparent min-h-[80px]">
                 <TypeAnimation

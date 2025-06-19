@@ -70,6 +70,7 @@ const Contact = () => {
           setFormData({ name: '', email: '', message: '' });
         }
       } catch (error) {
+        console.error('Error sending message:', error);
         toast.error('Failed to send message. Please try again later.', {
           duration: 5000,
           position: 'top-center',
