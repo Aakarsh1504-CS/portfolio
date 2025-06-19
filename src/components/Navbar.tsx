@@ -2,9 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,12 +23,15 @@ const Navbar = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+    setIsOpen(false);
   };
+
+  const navItems = ['About', 'Experience', 'Skills', 'Projects', 'Contact'];
 
   return (
     <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-lg' : ''
+        isScrolled || isOpen ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-lg' : ''
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -42,8 +47,9 @@ const Navbar = () => {
             Aakarsh Arora
           </a>
 
-          <div className="flex items-center space-x-8">
-            {['About', 'Experience', 'Skills', 'Projects', 'Contact'].map((item) => (
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center space-x-8">
+            {navItems.map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
@@ -54,8 +60,33 @@ const Navbar = () => {
               </a>
             ))}
           </div>
+
+          {/* Mobile Menu Button */}
+          <div className="md:hidden">
+            <button onClick={() => setIsOpen(!isOpen)} className="text-2xl">
+              {isOpen ? <FaTimes /> : <FaBars />}
+            </button>
+          </div>
         </div>
       </div>
+
+      {/* Mobile Menu Dropdown */}
+      {isOpen && (
+        <div className="md:hidden">
+          <div className="flex flex-col items-center space-y-6 py-6">
+            {navItems.map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                onClick={(e) => handleClick(e, item.toLowerCase())}
+                className="text-lg text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >
+                {item}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
     </motion.nav>
   );
 };

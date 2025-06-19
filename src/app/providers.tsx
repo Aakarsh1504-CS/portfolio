@@ -27,6 +27,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       disableTransitionOnChange
       storageKey="theme"
       themes={['light', 'dark', 'system']}
+      forcedTheme="dark"
     >
       {children}
       <Toaster position="top-center" />
