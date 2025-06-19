@@ -1,5 +1,5 @@
 'use client';
-//
+
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
@@ -70,7 +70,7 @@ const Contact = () => {
           setFormData({ name: '', email: '', message: '' });
         }
       } catch (error) {
-        console.error('Error sending message:', error);
+        console.error('Failed to send message:', error);
         toast.error('Failed to send message. Please try again later.', {
           duration: 5000,
           position: 'top-center',
@@ -122,8 +122,8 @@ const Contact = () => {
                 className={`w-full px-4 py-2 rounded-lg border ${
                   errors.name
                     ? 'border-red-500'
-                    : 'border-gray-300 dark:border-gray-600'
-                } bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50`}
+                    : 'border-gray-600'
+                } bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50`}
                 placeholder="Your name"
               />
               {errors.name && (
@@ -145,8 +145,8 @@ const Contact = () => {
                 className={`w-full px-4 py-2 rounded-lg border ${
                   errors.email
                     ? 'border-red-500'
-                    : 'border-gray-300 dark:border-gray-600'
-                } bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50`}
+                    : 'border-gray-600'
+                } bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50`}
                 placeholder="your.email@example.com"
               />
               {errors.email && (
@@ -168,8 +168,8 @@ const Contact = () => {
                 className={`w-full px-4 py-2 rounded-lg border ${
                   errors.message
                     ? 'border-red-500'
-                    : 'border-gray-300 dark:border-gray-600'
-                } bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50`}
+                    : 'border-gray-600'
+                } bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50`}
                 placeholder="Your message"
               />
               {errors.message && (

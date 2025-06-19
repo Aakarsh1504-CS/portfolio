@@ -16,13 +16,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark" style={{ colorScheme: 'dark' }}>
-      <head />
-      <body className={inter.className}>
+    <html lang="en">
+      <body className={`${inter.className} bg-gray-900 text-gray-100 antialiased`}>
         <Providers>
-          <div className="bg-white dark:bg-gray-900">
-            {children}
-          </div>
+          {children}
         </Providers>
       </body>
     </html>

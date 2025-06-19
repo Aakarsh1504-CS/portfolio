@@ -31,7 +31,7 @@ const skillCategories = [
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-800/50">
+    <section id="skills" className="py-20 bg-gray-800/50">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0 }}
@@ -49,7 +49,7 @@ const Skills = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
-                className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg transform-gpu transition-all duration-100 hover:shadow-xl hover:scale-[1.02]"
+                className="bg-gray-800 rounded-lg p-6 shadow-lg transform-gpu transition-all duration-100 hover:shadow-xl hover:scale-[1.02]"
               >
                 <h3 className="text-xl font-semibold mb-4">{category.title}</h3>
                 <div className="flex flex-wrap gap-2">
@@ -59,7 +59,7 @@ const Skills = () => {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.3 }}
-                      className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm transform-gpu transition-all duration-100 hover:scale-105 hover:bg-blue-200 dark:hover:bg-blue-800 cursor-default"
+                      className="px-3 py-1 bg-blue-900 text-blue-200 rounded-full text-sm transform-gpu transition-all duration-100 hover:scale-105 hover:bg-blue-800 cursor-default"
                     >
                       {skill}
                     </motion.span>

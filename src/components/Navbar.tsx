@@ -31,7 +31,7 @@ const Navbar = () => {
   return (
     <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled || isOpen ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-lg' : ''
+        isScrolled || isOpen ? 'bg-gray-900/80 backdrop-blur-md shadow-lg' : ''
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -42,7 +42,7 @@ const Navbar = () => {
           <a 
             href="#about" 
             onClick={(e) => handleClick(e, 'about')}
-            className="text-xl font-bold hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            className="text-xl font-bold hover:text-blue-400 transition-colors"
           >
             Aakarsh Arora
           </a>
@@ -54,7 +54,7 @@ const Navbar = () => {
                 key={item}
                 href={`#${item.toLowerCase()}`}
                 onClick={(e) => handleClick(e, item.toLowerCase())}
-                className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                className="text-gray-300 hover:text-blue-400 transition-colors"
               >
                 {item}
               </a>
@@ -79,7 +79,7 @@ const Navbar = () => {
                 key={item}
                 href={`#${item.toLowerCase()}`}
                 onClick={(e) => handleClick(e, item.toLowerCase())}
-                className="text-lg text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                className="text-lg text-gray-300 hover:text-blue-400 transition-colors"
               >
                 {item}
               </a>

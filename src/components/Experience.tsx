@@ -48,20 +48,20 @@ const Experience = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg"
+                className="bg-gray-800 rounded-lg p-6 shadow-lg"
               >
                 <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
                   <div>
                     <h3 className="text-xl font-semibold">{exp.title}</h3>
-                    <p className="text-blue-600 dark:text-blue-400">{exp.company}</p>
+                    <p className="text-blue-400">{exp.company}</p>
                   </div>
-                  <div className="text-gray-600 dark:text-gray-400 mt-2 md:mt-0">
+                  <div className="text-gray-400 mt-2 md:mt-0">
                     <p>{exp.period}</p>
                     <p className="text-sm">{exp.type}</p>
                   </div>
                 </div>
                 
-                <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                <ul className="list-disc list-inside space-y-2 text-gray-300">
                   {exp.points.map((point, idx) => (
                     <li key={idx}>{point}</li>
                   ))}

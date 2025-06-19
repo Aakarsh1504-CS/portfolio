@@ -47,11 +47,11 @@ const Projects = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg"
+                className="bg-gray-800 rounded-lg overflow-hidden shadow-lg"
               >
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-4">
+                  <p className="text-gray-400 mb-4">
                     {project.description}
                   </p>
                   
@@ -59,7 +59,7 @@ const Projects = () => {
                     {project.tech.map((tech, idx) => (
                       <span
                         key={idx}
-                        className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded text-sm"
+                        className="px-2 py-1 bg-blue-900 text-blue-200 rounded text-sm"
                       >
                         {tech}
                       </span>
@@ -71,7 +71,7 @@ const Projects = () => {
                       href={project.githubLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                      className="text-gray-400 hover:text-blue-400 transition-colors"
                     >
                       <FaGithub className="w-6 h-6" />
                     </a>
@@ -79,7 +79,7 @@ const Projects = () => {
                       href={project.liveLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                      className="text-gray-400 hover:text-blue-400 transition-colors"
                     >
                       <FaExternalLinkAlt className="w-5 h-5" />
                     </a>

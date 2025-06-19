@@ -23,7 +23,7 @@ const Hero = () => {
               transition={{ duration: 0.2 }}
               className="mb-6 relative group"
             >
-              <FaCode className="w-16 h-16 text-blue-600 dark:text-blue-400 transform transition-transform duration-200 group-hover:scale-110" />
+              <FaCode className="w-16 h-16 text-blue-400 transform transition-transform duration-200 group-hover:scale-110" />
             </motion.div>
 
             <div className="mb-6">
@@ -47,10 +47,10 @@ const Hero = () => {
               </div>
             </div>
 
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-6">
+            <p className="text-xl md:text-2xl text-gray-300 mb-6">
               Backend Developer specializing in Financial Systems
             </p>
-            <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl">
+            <p className="text-lg text-gray-400 mb-8 max-w-2xl">
               Experienced in designing and delivering secure, high-volume financial systems
               with production-grade reliability. Focused on payment integrations, KYC automation,
               and fraud prevention. Solved 400+ DSA problems on LeetCode, demonstrating strong
@@ -63,19 +63,19 @@ const Hero = () => {
                   href: "https://github.com/Aakarsh1504-CS",
                   icon: FaGithub,
                   label: "GitHub",
-                  color: "hover:text-gray-800 dark:hover:text-white"
+                  color: "hover:text-white"
                 },
                 {
                   href: "https://www.linkedin.com/in/aakarsh-arora-b3965822b/",
                   icon: FaLinkedin,
                   label: "LinkedIn",
-                  color: "hover:text-blue-600 dark:hover:text-blue-400"
+                  color: "hover:text-blue-400"
                 },
                 {
                   href: "https://leetcode.com/u/Aakarsh_1504/",
                   icon: SiLeetcode,
                   label: "LeetCode",
-                  color: "hover:text-[#FFA116] dark:hover:text-[#FFA116]"
+                  color: "hover:text-[#FFA116]"
                 }
               ].map((social) => (
                 <motion.a
@@ -105,7 +105,7 @@ const Hero = () => {
               <motion.a
                 href="/resumee.pdf"
                 download
-                className="inline-flex items-center gap-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white px-8 py-3 rounded-lg font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                className="inline-flex items-center gap-2 bg-gray-800 text-white px-8 py-3 rounded-lg font-medium hover:bg-gray-700 transition-colors"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -123,8 +123,8 @@ const Hero = () => {
             className="relative"
           >
             <div className="relative w-full aspect-[3/4] max-w-md mx-auto lg:ml-auto">
-              <div className="absolute inset-0 bg-blue-600/10 dark:bg-blue-400/10 rounded-2xl transform -rotate-6"></div>
-              <div className="absolute inset-0 bg-blue-600/10 dark:bg-blue-400/10 rounded-2xl transform rotate-3"></div>
+              <div className="absolute inset-0 bg-blue-400/10 rounded-2xl transform -rotate-6"></div>
+              <div className="absolute inset-0 bg-blue-400/10 rounded-2xl transform rotate-3"></div>
               <div className="relative rounded-2xl overflow-hidden w-full h-full">
                 <Image
                   src="/profile.png"

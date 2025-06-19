@@ -1,12 +1,12 @@
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
+  darkMode: false,
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  darkMode: 'class',
   theme: {
     extend: {
       animation: {
@@ -21,6 +21,7 @@ const config: Config = {
           '50%': {
             'background-position': '100% 50%',
           },
+          to: { 'background-position': '200% center' },
         },
       },
       transitionTimingFunction: {
