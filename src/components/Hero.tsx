@@ -48,7 +48,7 @@ const Hero = () => {
             </div>
 
             <p className="text-xl md:text-2xl text-gray-300 mb-6">
-              Backend Developer specializing in Financial Systems
+              Backend Developer
             </p>
             <p className="text-lg text-gray-400 mb-8 max-w-2xl">
               Experienced in designing and delivering secure, high-volume financial systems
