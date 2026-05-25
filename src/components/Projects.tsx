@@ -36,7 +36,7 @@ const projects: Project[] = [
     description:
       'Session-authenticated note app with full CRUD. Minimal, fast, mine.',
     tech: ['Node.js', 'Express', 'MongoDB', 'JWT'],
-    live: 'https://mynote-vv6z.onrender.com/',
+    live: 'https://take-note-pwjf.onrender.com/login',
     repo: 'https://github.com/Aakarsh1504-CS/take-note',
     accent: 'from-[#6ea8ff]/15',
   },
