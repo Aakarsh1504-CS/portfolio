@@ -57,11 +57,11 @@ const Manifesto = () => {
           </div>
 
           <h2 className="font-mono text-2xl md:text-4xl lg:text-5xl leading-[1.15] tracking-tight text-balance">
-            <span className="text-[var(--fg-dim)]">/*</span> I build systems that{' '}
+            <span className="text-[var(--fg-dim)]">{'/*'}</span> I build systems that{' '}
             <span className="text-[var(--accent)]">move money</span>, verify identity,
             and stay up at <span className="text-[var(--info)]">3am</span>. The kind of
             code where a missed edge case is someone&apos;s actual rupee.{' '}
-            <span className="text-[var(--fg-dim)]">*/</span>
+            <span className="text-[var(--fg-dim)]">{'*/'}</span>
           </h2>
 
           <p className="mt-6 text-[var(--fg-muted)] max-w-2xl text-balance">

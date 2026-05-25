@@ -141,7 +141,7 @@ const Hero = () => {
                 </motion.a>
               ))}
               <div className="font-mono text-[10px] uppercase tracking-widest text-[var(--fg-dim)] ml-2">
-                // dm&apos;s open
+                {'//'} dm&apos;s open
               </div>
             </div>
           </motion.div>

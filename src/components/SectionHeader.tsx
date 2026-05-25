@@ -32,7 +32,7 @@ const SectionHeader = ({ num, kicker, title, subtitle }: Props) => {
         )}
       </div>
       <div className="hidden md:block font-mono text-[10px] uppercase tracking-widest text-[var(--fg-dim)] text-right">
-        <div>// scroll</div>
+        <div>{'// scroll'}</div>
         <div className="mt-1">↓</div>
       </div>
     </motion.div>

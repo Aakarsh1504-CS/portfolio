@@ -86,7 +86,7 @@ const Projects = () => {
               <div className="relative flex flex-col h-full">
                 <div className="flex items-center justify-between mb-6">
                   <div className="font-mono text-[10px] uppercase tracking-widest text-[var(--fg-dim)]">
-                    proj_0{i + 1} // {p.id}
+                    proj_0{i + 1} {'//'} {p.id}
                   </div>
                   <FaArrowRight className="text-[var(--fg-dim)] group-hover:text-[var(--accent)] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
                 </div>
@@ -148,7 +148,7 @@ const Projects = () => {
             className="relative bg-[var(--bg)] p-6 md:p-8 flex flex-col justify-center items-start"
           >
             <div className="font-mono text-[10px] uppercase tracking-widest text-[var(--fg-dim)] mb-4">
-              proj_04 // wip
+              proj_04 {'//'} wip
             </div>
             <div className="font-mono text-2xl text-[var(--fg-muted)]">
               <span className="text-[var(--accent)]">$</span> next.<span className="blink">▌</span>
