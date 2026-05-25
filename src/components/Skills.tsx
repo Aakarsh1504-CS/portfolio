@@ -1,77 +1,243 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import SectionHeader from './SectionHeader';
+import Marquee from './Marquee';
+import {
+  FaJava,
+  FaNodeJs,
+  FaPython,
+  FaAws,
+  FaDocker,
+  FaGitAlt,
+} from 'react-icons/fa';
+import {
+  SiGo,
+  SiRedis,
+  SiMongodb,
+  SiPostgresql,
+  SiMysql,
+  SiApachekafka,
+  SiTypescript,
+  SiLangchain,
+  SiOpenai,
+} from 'react-icons/si';
 
-const skillCategories = [
+type Card = {
+  span?: string;
+  title: string;
+  kicker: string;
+  icon?: React.ComponentType<{ className?: string }>;
+  body: React.ReactNode;
+  tags: string[];
+  glow?: string;
+};
+
+const cards: Card[] = [
+  {
+    span: 'md:col-span-2 md:row-span-2',
+    title: 'AI / LLM stack',
+    kicker: '// the new frontier',
+    icon: SiLangchain,
+    glow: 'from-[#00ff9c]/20 to-transparent',
+    body: (
+      <>
+        <p>
+          Building <span className="text-[var(--accent)]">RAG pipelines</span>,
+          tool-using agents, and embedding-driven search.
+        </p>
+        <p className="mt-2 text-[var(--fg-muted)]">
+          LangChain + vector stores + structured outputs. Treating prompts like
+          contracts and evals like tests.
+        </p>
+      </>
+    ),
+    tags: ['LangChain', 'RAG', 'LLMs', 'Embeddings', 'Vector DBs', 'OpenAI', 'Claude'],
+  },
   {
     title: 'Languages',
-    skills: ['JavaScript (Node.js)', 'Java', 'Python'],
+    kicker: '// daily drivers',
+    body: (
+      <div className="flex flex-wrap gap-3 mt-1">
+        {[
+          { i: FaJava, l: 'Java' },
+          { i: SiGo, l: 'Go' },
+          { i: FaNodeJs, l: 'Node.js' },
+          { i: SiTypescript, l: 'TS' },
+          { i: FaPython, l: 'Python' },
+        ].map(({ i: Icon, l }) => (
+          <span
+            key={l}
+            className="inline-flex items-center gap-2 text-sm text-[var(--fg-muted)]"
+          >
+            <Icon className="text-base text-[var(--fg)]" /> {l}
+          </span>
+        ))}
+      </div>
+    ),
+    tags: [],
   },
   {
-    title: 'Frameworks & Libraries',
-    skills: ['Node.js', 'Express', 'Kafka', 'Laravel'],
+    title: 'Datastores',
+    kicker: '// pick the right hammer',
+    body: (
+      <div className="flex flex-wrap gap-3 mt-1">
+        {[
+          { i: SiPostgresql, l: 'Postgres' },
+          { i: SiMongodb, l: 'MongoDB' },
+          { i: SiRedis, l: 'Redis' },
+          { i: SiMysql, l: 'MySQL' },
+        ].map(({ i: Icon, l }) => (
+          <span
+            key={l}
+            className="inline-flex items-center gap-2 text-sm text-[var(--fg-muted)]"
+          >
+            <Icon className="text-base text-[var(--fg)]" /> {l}
+          </span>
+        ))}
+        <span className="inline-flex items-center gap-2 text-sm text-[var(--fg-muted)]">
+          <span className="w-4 h-4 rounded-sm bg-gradient-to-br from-red-500 to-orange-500" />
+          Aerospike
+        </span>
+      </div>
+    ),
+    tags: [],
   },
   {
-    title: 'Databases & Storage',
-    skills: ['MongoDB', 'MySQL', 'Redis'],
+    title: 'Vibe coding',
+    kicker: '// AI as a pair',
+    icon: SiOpenai,
+    glow: 'from-[#ff4d6d]/15 to-transparent',
+    body: (
+      <p className="text-[var(--fg-muted)]">
+        Cursor + Claude + spec-driven prompting. Intent in, working code out — then
+        review it like any other PR.
+      </p>
+    ),
+    tags: ['Cursor', 'Claude', 'spec→code', 'eval-driven'],
   },
   {
-    title: 'Cloud & Infrastructure',
-    skills: ['AWS EC2', 'AWS S3', 'Docker'],
+    title: 'Infra & Ops',
+    kicker: '// keep the lights on',
+    body: (
+      <div className="flex flex-wrap gap-3 mt-1">
+        {[
+          { i: FaAws, l: 'AWS' },
+          { i: FaDocker, l: 'Docker' },
+          { i: SiApachekafka, l: 'Kafka' },
+          { i: FaGitAlt, l: 'Git' },
+        ].map(({ i: Icon, l }) => (
+          <span
+            key={l}
+            className="inline-flex items-center gap-2 text-sm text-[var(--fg-muted)]"
+          >
+            <Icon className="text-base text-[var(--fg)]" /> {l}
+          </span>
+        ))}
+      </div>
+    ),
+    tags: [],
   },
   {
-    title: 'Financial Systems',
-    skills: ['Payment APIs', 'KYC Flows', 'Fraud Prevention', 'Transaction Consistency', 'Secure Tokens'],
+    title: 'Financial systems',
+    kicker: '// the day job',
+    glow: 'from-[#6ea8ff]/15 to-transparent',
+    body: (
+      <p className="text-[var(--fg-muted)]">
+        Payments, KYC automation, fraud signals, idempotent retries, audit trails.
+        Cryptographic handling of identifiers and tokens.
+      </p>
+    ),
+    tags: ['Payments', 'KYC', 'Fraud', 'Idempotency'],
   },
-  {
-    title: 'Best Practices',
-    skills: ['Unit Testing', 'Agile', 'CI/CD', 'Secure Coding', 'Audit Logging'],
-  },
+];
+
+const marqueeItems = [
+  'JAVA',
+  'GO',
+  'NODE.JS',
+  'POSTGRES',
+  'MONGODB',
+  'REDIS',
+  'AEROSPIKE',
+  'KAFKA',
+  'AWS',
+  'DOCKER',
+  'LANGCHAIN',
+  'LLM',
+  'RAG',
+  'VECTOR DB',
+  'EMBEDDINGS',
+  'VIBE CODING',
 ];
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-20 bg-gray-800/50">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-3xl font-bold mb-12 text-center">Technical Skills</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {skillCategories.map((category, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-                className="bg-gray-800 rounded-lg p-6 shadow-lg transform-gpu transition-all duration-100 hover:shadow-xl hover:scale-[1.02]"
-              >
-                <h3 className="text-xl font-semibold mb-4">{category.title}</h3>
-                <div className="flex flex-wrap gap-2">
-                  {category.skills.map((skill, idx) => (
-                    <motion.span
-                      key={idx}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.3 }}
-                      className="px-3 py-1 bg-blue-900 text-blue-200 rounded-full text-sm transform-gpu transition-all duration-100 hover:scale-105 hover:bg-blue-800 cursor-default"
-                    >
-                      {skill}
-                    </motion.span>
-                  ))}
+    <section id="arsenal" className="py-24">
+      <Marquee items={marqueeItems} />
+
+      <div className="container mx-auto px-4 mt-20">
+        <SectionHeader
+          num="02"
+          kicker="arsenal.json"
+          title="The stack I reach for."
+          subtitle="Bias toward boring, battle-tested infra at the core — with the LLM/agent layer on top."
+        />
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[var(--line)] border border-[var(--line)]">
+          {cards.map((c) => (
+            <motion.div
+              key={c.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.4 }}
+              className={`relative overflow-hidden bg-[var(--bg)] p-6 md:p-8 tilt-card group ${
+                c.span ?? ''
+              }`}
+            >
+              {/* Glow */}
+              {c.glow && (
+                <div
+                  className={`absolute -inset-px bg-gradient-to-br ${c.glow} opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none`}
+                />
+              )}
+
+              <div className="relative">
+                <div className="flex items-center justify-between mb-6">
+                  <div className="font-mono text-[10px] uppercase tracking-widest text-[var(--fg-dim)]">
+                    {c.kicker}
+                  </div>
+                  {c.icon && (
+                    <c.icon className="text-xl text-[var(--fg-muted)] group-hover:text-[var(--accent)] transition-colors" />
+                  )}
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+
+                <h3 className="text-xl md:text-2xl font-semibold tracking-tight mb-3">
+                  {c.title}
+                </h3>
+
+                <div className="text-[var(--fg)]">{c.body}</div>
+
+                {c.tags.length > 0 && (
+                  <div className="mt-5 flex flex-wrap gap-1.5">
+                    {c.tags.map((t) => (
+                      <span
+                        key={t}
+                        className="font-mono text-[10px] uppercase tracking-wider border border-[var(--line)] text-[var(--fg-muted)] px-2 py-1"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
 };
 
-export default Skills; 
+export default Skills;

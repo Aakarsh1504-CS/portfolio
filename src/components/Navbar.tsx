@@ -1,87 +1,104 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaBars, FaTimes } from 'react-icons/fa';
 
+const navItems = [
+  { id: 'about', label: 'about', num: '01' },
+  { id: 'arsenal', label: 'arsenal', num: '02' },
+  { id: 'experience', label: 'experience', num: '03' },
+  { id: 'lab', label: 'lab', num: '04' },
+  { id: 'vibe', label: 'vibe', num: '05' },
+  { id: 'projects', label: 'projects', num: '06' },
+  { id: 'contact', label: 'contact', num: '07' },
+];
+
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 16);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
-    const element = document.getElementById(targetId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-    setIsOpen(false);
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    setOpen(false);
   };
-
-  const navItems = ['About', 'Experience', 'Skills', 'Projects', 'Contact'];
 
   return (
     <motion.nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled || isOpen ? 'bg-gray-900/80 backdrop-blur-md shadow-lg' : ''
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.4, delay: 0.1 }}
+      className={`fixed top-8 left-0 right-0 z-40 transition-all duration-300 ${
+        scrolled || open
+          ? 'bg-[var(--bg)]/80 backdrop-blur-md border-b border-[var(--line)]'
+          : 'border-b border-transparent'
       }`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.3 }}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          <a 
-            href="#about" 
+        <div className="flex items-center justify-between h-14">
+          <a
+            href="#about"
             onClick={(e) => handleClick(e, 'about')}
-            className="text-xl font-bold hover:text-blue-400 transition-colors"
+            className="font-mono text-sm tracking-tight flex items-center gap-2 group"
           >
-            Aakarsh Arora
+            <span className="inline-block w-2 h-2 bg-[var(--accent)] group-hover:rotate-45 transition-transform" />
+            <span className="text-[var(--fg)]">aakarsh</span>
+            <span className="text-[var(--fg-dim)]">.aa</span>
           </a>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center gap-6 font-mono text-xs uppercase tracking-wider">
             {navItems.map((item) => (
               <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                onClick={(e) => handleClick(e, item.toLowerCase())}
-                className="text-gray-300 hover:text-blue-400 transition-colors"
+                key={item.id}
+                href={`#${item.id}`}
+                onClick={(e) => handleClick(e, item.id)}
+                className="group relative text-[var(--fg-muted)] hover:text-[var(--fg)] transition-colors"
               >
-                {item}
+                <span className="text-[var(--fg-dim)] mr-1.5">{item.num}</span>
+                {item.label}
+                <span className="absolute -bottom-1 left-0 w-0 h-px bg-[var(--accent)] group-hover:w-full transition-all duration-300" />
               </a>
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button onClick={() => setIsOpen(!isOpen)} className="text-2xl">
-              {isOpen ? <FaTimes /> : <FaBars />}
-            </button>
-          </div>
+          <a
+            href="#contact"
+            onClick={(e) => handleClick(e, 'contact')}
+            className="hidden md:inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider border border-[var(--line-strong)] hover:border-[var(--accent)] hover:text-[var(--accent)] text-[var(--fg)] px-3 py-1.5 transition-all"
+          >
+            <span className="w-1.5 h-1.5 bg-[var(--accent)] rounded-full" />
+            let&apos;s build
+          </a>
+
+          <button
+            onClick={() => setOpen(!open)}
+            className="md:hidden text-xl text-[var(--fg)]"
+            aria-label="toggle menu"
+          >
+            {open ? <FaTimes /> : <FaBars />}
+          </button>
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
-      {isOpen && (
-        <div className="md:hidden">
-          <div className="flex flex-col items-center space-y-6 py-6">
+      {open && (
+        <div className="md:hidden border-t border-[var(--line)]">
+          <div className="flex flex-col py-4 font-mono text-sm">
             {navItems.map((item) => (
               <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                onClick={(e) => handleClick(e, item.toLowerCase())}
-                className="text-lg text-gray-300 hover:text-blue-400 transition-colors"
+                key={item.id}
+                href={`#${item.id}`}
+                onClick={(e) => handleClick(e, item.id)}
+                className="px-6 py-3 text-[var(--fg-muted)] hover:text-[var(--accent)] hover:bg-[var(--bg-soft)] flex items-center gap-3"
               >
-                {item}
+                <span className="text-[var(--fg-dim)] text-xs">{item.num}</span>
+                {item.label}
               </a>
             ))}
           </div>
@@ -91,4 +108,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar; 
+export default Navbar;

@@ -1,97 +1,166 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaArrowRight } from 'react-icons/fa';
+import SectionHeader from './SectionHeader';
 
-const projects = [
+type Project = {
+  id: string;
+  name: string;
+  tagline: string;
+  description: string;
+  tech: string[];
+  live: string;
+  repo: string;
+  accent: string;
+  span?: string;
+};
+
+const projects: Project[] = [
   {
-    title: 'CodeLeela',
-    description: "A coder's social platform inspired by Krishna ji. Features include JWT authentication, post creation, and image uploads.",
-    tech: ['Node.js', 'Express', 'MongoDB', 'Multer'],
-    liveLink: 'https://code-leela.onrender.com',
-    githubLink: 'https://github.com/Aakarsh1504-CS/code-leela',
+    id: 'codeleela',
+    name: 'CodeLeela',
+    tagline: 'a coder\'s social network',
+    description:
+      'JWT-auth\'d social platform for devs. Post, share, upload images. Inspired by Krishna ji.',
+    tech: ['Node.js', 'Express', 'MongoDB', 'Multer', 'JWT'],
+    live: 'https://code-leela.onrender.com',
+    repo: 'https://github.com/Aakarsh1504-CS/code-leela',
+    accent: 'from-[#00ff9c]/15',
+    span: 'md:col-span-2',
   },
   {
-    title: 'Personal Note App',
-    description: 'Full-featured note-taking application with CRUD operations and session-based authentication.',
+    id: 'take-note',
+    name: 'Take Note',
+    tagline: 'notes with intent',
+    description:
+      'Session-authenticated note app with full CRUD. Minimal, fast, mine.',
     tech: ['Node.js', 'Express', 'MongoDB', 'JWT'],
-    liveLink: 'https://mynote-vv6z.onrender.com/',
-    githubLink: 'https://github.com/Aakarsh1504-CS/take-note',
+    live: 'https://mynote-vv6z.onrender.com/',
+    repo: 'https://github.com/Aakarsh1504-CS/take-note',
+    accent: 'from-[#6ea8ff]/15',
   },
   {
-    title: 'Movie Search App',
-    description: 'Clean and intuitive movie search application powered by the OMDB API.',
+    id: 'movie-search',
+    name: 'Movie Search',
+    tagline: 'OMDB-powered discovery',
+    description:
+      'Clean search UI for movies. Single-page, instant feedback, snappy.',
     tech: ['HTML', 'CSS', 'JavaScript', 'OMDB API'],
-    liveLink: 'https://aakarsh-projects-api-movie.on.drv.tw/dets/',
-    githubLink: 'https://github.com/Aakarsh1504-CS/MOVIE-SEARCH',
+    live: 'https://aakarsh-projects-api-movie.on.drv.tw/dets/',
+    repo: 'https://github.com/Aakarsh1504-CS/MOVIE-SEARCH',
+    accent: 'from-[#ffb020]/15',
   },
 ];
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-20">
+    <section id="projects" className="py-24 bg-[var(--bg)]">
       <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-3xl font-bold mb-12 text-center">Featured Projects</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {projects.map((project, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-gray-800 rounded-lg overflow-hidden shadow-lg"
-              >
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                  <p className="text-gray-400 mb-4">
-                    {project.description}
-                  </p>
-                  
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tech.map((tech, idx) => (
+        <SectionHeader
+          num="06"
+          kicker="./ship.list"
+          title="Things I've shipped."
+          subtitle="A small set, deliberately. Each one taught me something I still use."
+        />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--line)] border border-[var(--line)]">
+          {projects.map((p, i) => (
+            <motion.a
+              key={p.id}
+              href={p.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.4, delay: i * 0.08 }}
+              className={`relative bg-[var(--bg)] p-6 md:p-8 tilt-card group overflow-hidden ${
+                p.span ?? ''
+              }`}
+            >
+              <div
+                className={`absolute -inset-px bg-gradient-to-br ${p.accent} to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none`}
+              />
+
+              <div className="relative flex flex-col h-full">
+                <div className="flex items-center justify-between mb-6">
+                  <div className="font-mono text-[10px] uppercase tracking-widest text-[var(--fg-dim)]">
+                    proj_0{i + 1} // {p.id}
+                  </div>
+                  <FaArrowRight className="text-[var(--fg-dim)] group-hover:text-[var(--accent)] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                </div>
+
+                <h3 className="text-2xl md:text-3xl font-semibold tracking-tight mb-1">
+                  {p.name}
+                </h3>
+                <div className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] mb-4">
+                  {p.tagline}
+                </div>
+
+                <p className="text-[var(--fg-muted)] mb-6 max-w-xl">
+                  {p.description}
+                </p>
+
+                <div className="mt-auto flex items-center justify-between gap-4">
+                  <div className="flex flex-wrap gap-1.5">
+                    {p.tech.map((t) => (
                       <span
-                        key={idx}
-                        className="px-2 py-1 bg-blue-900 text-blue-200 rounded text-sm"
+                        key={t}
+                        className="font-mono text-[10px] uppercase tracking-wider border border-[var(--line)] text-[var(--fg-muted)] px-2 py-1"
                       >
-                        {tech}
+                        {t}
                       </span>
                     ))}
                   </div>
-                  
-                  <div className="flex items-center space-x-4">
-                    <a
-                      href={project.githubLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-400 hover:text-blue-400 transition-colors"
+
+                  <div className="flex items-center gap-3 shrink-0">
+                    <span
+                      onClick={(e) => {
+                        e.preventDefault();
+                        window.open(p.repo, '_blank', 'noopener,noreferrer');
+                      }}
+                      className="text-[var(--fg-muted)] hover:text-[var(--fg)] transition-colors cursor-pointer"
+                      role="button"
+                      tabIndex={0}
+                      aria-label={`${p.name} repository`}
                     >
-                      <FaGithub className="w-6 h-6" />
-                    </a>
-                    <a
-                      href={project.liveLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-400 hover:text-blue-400 transition-colors"
+                      <FaGithub className="text-lg" />
+                    </span>
+                    <span
+                      className="text-[var(--fg-muted)] hover:text-[var(--accent)] transition-colors"
+                      aria-label={`${p.name} live`}
                     >
-                      <FaExternalLinkAlt className="w-5 h-5" />
-                    </a>
+                      <FaExternalLinkAlt className="text-sm" />
+                    </span>
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+              </div>
+            </motion.a>
+          ))}
+
+          {/* Last cell: more coming */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+            className="relative bg-[var(--bg)] p-6 md:p-8 flex flex-col justify-center items-start"
+          >
+            <div className="font-mono text-[10px] uppercase tracking-widest text-[var(--fg-dim)] mb-4">
+              proj_04 // wip
+            </div>
+            <div className="font-mono text-2xl text-[var(--fg-muted)]">
+              <span className="text-[var(--accent)]">$</span> next.<span className="blink">▌</span>
+            </div>
+            <p className="mt-3 text-[var(--fg-muted)] text-sm">
+              Currently cooking an LLM-powered tool. DM if curious.
+            </p>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
 };
 
-export default Projects; 
+export default Projects;
